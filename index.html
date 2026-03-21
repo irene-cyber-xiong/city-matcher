@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市匹配 - 找到属于你的城市</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .continent-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .continent-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            user-select: none;
+        }
+
+        .continent-option:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .continent-option input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .continent-option span {
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        .continent-option input[type="checkbox"]:checked + span {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .date-inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .time-inputs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .city-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .city-name {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .city-elements {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .city-reason {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .city-pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .pros, .cons {
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .pros {
+            background: #e8f5e9;
+        }
+
+        .cons {
+            background: #ffebee;
+        }
+
+        .pros h4, .cons h4 {
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .pros h4 {
+            color: #2e7d32;
+        }
+
+        .cons h4 {
+            color: #c62828;
+        }
+
+        .pros ul, .cons ul {
+            list-style: none;
+            font-size: 0.9em;
+        }
+
+        .pros li, .cons li {
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .pros li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2e7d32;
+        }
+
+        .cons li:before {
+            content: "×";
+            position: absolute;
+            left: 0;
+            color: #c62828;
+        }
+
+        .bazi-info {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .bazi-info h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .bazi-pillars {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .pillar {
+            text-align: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .pillar-label {
+            font-size: 0.8em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .pillar-chars {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .elements-summary {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .reset-btn {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+
+        .reset-btn:hover {
+            box-shadow: 0 10px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .share-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .share-btn:hover {
+            box-shadow: 0 10px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        .history-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .history-btn:hover {
+            box-shadow: 0 10px 20px rgba(79, 172, 254, 0.4);
+        }
+
+        .history-section {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .history-section.show {
+            display: block;
+        }
+
+        .history-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 4px solid #4facfe;
+        }
+
+        .history-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .history-date {
+            font-size: 0.85em;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .history-info {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .history-top-city {
+            color: #667eea;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .delete-history {
+            float: right;
+            color: #c62828;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .delete-history:hover {
+            background: #ffebee;
+        }
+
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .share-modal.show {
+            display: flex;
+        }
+
+        .share-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .share-options {
+            display: grid;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .share-option {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-align: center;
+        }
+
+        .share-option:hover {
+            background: #e9ecef;
+        }
+
+        .close-modal {
+            background: #6c757d;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 城市匹配</h1>
+        <p class="subtitle">基于你的八字，找到最适合你的城市</p>
+
+        <div id="input-section">
+            <div class="input-group">
+                <label>出生日期</label>
+                <div class="date-inputs">
+                    <input type="number" id="year" placeholder="年" min="1900" max="2100">
+                    <input type="number" id="month" placeholder="月" min="1" max="12">
+                    <input type="number" id="day" placeholder="日" min="1" max="31">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>出生时间</label>
+                <div class="time-inputs">
+                    <input type="number" id="hour" placeholder="时" min="0" max="23">
+                    <input type="number" id="minute" placeholder="分" min="0" max="59">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>出生地（用于时区校正）</label>
+                <input type="text" id="birthplace" placeholder="例如：北京">
+            </div>
+
+            <div class="input-group">
+                <label>选择地区（可多选）</label>
+                <div class="continent-selector">
+                    <label class="continent-option">
+                        <input type="checkbox" value="all" id="continent-all" onchange="toggleAllContinents()" checked>
+                        <span>全球</span>
+                    </label>
+                    <label class="continent-option">
+                        <input type="checkbox" value="asia" class="continent-checkbox" checked>
+                        <span>亚洲</span>
+                    </label>
+                    <label class="continent-option">
+                        <input type="checkbox" value="europe" class="continent-checkbox" checked>
+                        <span>欧洲</span>
+                    </label>
+                    <label class="continent-option">
+                        <input type="checkbox" value="north-america" class="continent-checkbox" checked>
+                        <span>北美洲</span>
+                    </label>
+                    <label class="continent-option">
+                        <input type="checkbox" value="south-america" class="continent-checkbox" checked>
+                        <span>南美洲</span>
+                    </label>
+                    <label class="continent-option">
+                        <input type="checkbox" value="africa" class="continent-checkbox" checked>
+                        <span>非洲</span>
+                    </label>
+                    <label class="continent-option">
+                        <input type="checkbox" value="oceania" class="continent-checkbox" checked>
+                        <span>大洋洲</span>
+                    </label>
+                </div>
+            </div>
+
+            <button onclick="calculateMatch()">开始匹配</button>
+        </div>
+
+        <div id="result" class="result">
+            <div class="bazi-info">
+                <h3>你的八字</h3>
+                <div class="bazi-pillars" id="bazi-pillars"></div>
+                <div class="elements-summary" id="elements-summary"></div>
+            </div>
+
+            <h3 style="margin-bottom: 15px; color: #333;">为你推荐的城市</h3>
+            <div id="cities"></div>
+
+            <div class="action-buttons">
+                <button class="share-btn" onclick="showShareModal()">📤 分享结果</button>
+                <button class="reset-btn" onclick="reset()" style="margin: 0;">重新测试</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分享弹窗 -->
+    <div id="share-modal" class="share-modal">
+        <div class="share-content">
+            <h3 style="margin-bottom: 15px; color: #333;">分享你的结果</h3>
+            <div class="share-options">
+                <div class="share-option" onclick="copyLink()">
+                    🔗 复制链接
+                </div>
+                <div class="share-option" onclick="shareText()">
+                    📝 复制文字结果
+                </div>
+                <div class="share-option" onclick="downloadImage()">
+                    🖼️ 下载图片（开发中）
+                </div>
+            </div>
+            <button class="close-modal" onclick="closeShareModal()">关闭</button>
+        </div>
+    </div>
+
+    <script src="solarterms1900to2050.js"></script>
+    <script src="bazi.js"></script>
+    <script src="cities.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

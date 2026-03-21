@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+</head>
+<body>
+    <h1>测试 lunar-javascript</h1>
+    <div id="result"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.6.12/dist/lunar.min.js"></script>
+    <script>
+        console.log('Lunar:', typeof Lunar);
+        
+        if (typeof Lunar !== 'undefined') {
+            try {
+                const solar = Lunar.Solar.fromYmdHms(1993, 9, 15, 1, 0, 0);
+                const lunar = solar.getLunar();
+                const eightChar = lunar.getEightChar();
+                
+                const result = {
+                    year: eightChar.getYear(),
+                    month: eightChar.getMonth(),
+                    day: eightChar.getDay(),
+                    hour: eightChar.getTime()
+                };
+                
+                document.getElementById('result').innerHTML = JSON.stringify(result, null, 2);
+                console.log('八字:', result);
+            } catch (error) {
+                document.getElementById('result').innerHTML = '错误: ' + error.message;
+                console.error('错误:', error);
+            }
+        } else {
+            document.getElementById('result').innerHTML = 'Lunar 库未加载';
+        }
+    </script>
+</body>
+</html>

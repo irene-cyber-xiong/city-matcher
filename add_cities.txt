@@ -1,0 +1,37 @@
+    ,{
+        name: "迪拜",
+        nameEn: "Dubai",
+        country: "阿联酋",
+        elements: {
+            primary: "金",
+            secondary: "火",
+            tertiary: "土"
+        },
+        description: "沙漠奇迹，奢华与商业的完美结合",
+        characteristics: {
+            climate: "沙漠气候，炎热干燥",
+            pace: "快，国际化",
+            culture: "奢华、商业、多元",
+            industry: "金融、贸易、旅游、房地产"
+        },
+        pros: [
+            "免税天堂",
+            "商业机会多",
+            "基础设施一流",
+            "安全稳定"
+        ],
+        cons: [
+            "天气极热",
+            "文化限制",
+            "生活成本高",
+            "缺乏归属感"
+        ],
+        matchScore: function(bazi) {
+            let score = 0;
+            if (bazi.strongElements.includes("金")) score += 28;
+            if (bazi.strongElements.includes("火")) score += 20;
+            if (bazi.strongElements.includes("土")) score += 15;
+            if (bazi.strongElements.includes("水")) score -= 10;
+            return score;
+        }
+    }

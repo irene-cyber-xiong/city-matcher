@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>测试 lunisolar</title>
+</head>
+<body>
+    <h1>测试 lunisolar</h1>
+    <button onclick="test()">测试</button>
+    <pre id="result"></pre>
+    
+    <script src="https://cdn.jsdelivr.net/npm/lunisolar@2.2.6/dist/index.iife.js"></script>
+    <script>
+        function test() {
+            const result = document.getElementById('result');
+            
+            try {
+                result.textContent = 'lunisolar 类型: ' + typeof lunisolar + '\n\n';
+                
+                if (typeof lunisolar === 'undefined') {
+                    result.textContent += '错误：lunisolar 未定义';
+                    return;
+                }
+                
+                // 测试创建日期
+                const dateStr = '1993-09-15 01:00:00';
+                result.textContent += '测试日期: ' + dateStr + '\n\n';
+                
+                const lsr = lunisolar(dateStr);
+                result.textContent += 'lunisolar 对象创建成功\n';
+                result.textContent += 'lsr: ' + JSON.stringify(lsr, null, 2) + '\n\n';
+                
+                // 测试获取八字
+                if (lsr.char8) {
+                    result.textContent += '八字对象存在\n';
+                    result.textContent += 'char8: ' + JSON.stringify(lsr.char8, null, 2) + '\n\n';
+                    
+                    const bazi = {
+                        year: lsr.char8.year.value,
+                        month: lsr.char8.month.value,
+                        day: lsr.char8.day.value,
+                        hour: lsr.char8.hour.value
+                    };
+                    
+                    result.textContent += '八字: ' + JSON.stringify(bazi, null, 2);
+                } else {
+                    result.textContent += '错误：char8 不存在';
+                }
+                
+            } catch (error) {
+                result.textContent += '错误: ' + error.message + '\n';
+                result.textContent += error.stack;
+            }
+        }
+    </script>
+</body>
+</html>

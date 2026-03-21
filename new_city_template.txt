@@ -1,0 +1,17 @@
+    ,{
+        name: "台北",
+        nameEn: "Taipei",
+        country: "中国台湾",
+        elements: { primary: "水", secondary: "木", tertiary: "金" },
+        description: "宝岛之都，温润包容的华人文化",
+        characteristics: { climate: "亚热带，温暖湿润", pace: "适中，宜居", culture: "包容、文艺、人情味", industry: "科技、文创、服务业" },
+        pros: ["生活便利", "医疗发达", "文化多元", "美食丰富"],
+        cons: ["薪资偏低", "房价高", "台风多", "政治争议"],
+        matchScore: function(bazi) {
+            let score = 0;
+            if (bazi.strongElements.includes("水")) score += 25;
+            if (bazi.strongElements.includes("木")) score += 18;
+            if (bazi.strongElements.includes("金")) score += 12;
+            return score;
+        }
+    }
