@@ -154,6 +154,7 @@ function displayCities(matches, elements) {
                 <div class="city-reason">${reason}</div>
                 <div style="color: #666; margin-bottom: 10px;">
                     <strong>特点：</strong>${city.characteristics.climate} | ${city.characteristics.pace} | ${city.characteristics.industry}
+                    <br><strong>光照：</strong>${getSunshineText(city.sunshine)}
                 </div>
                 <div class="city-pros-cons">
                     <div class="pros">
@@ -174,6 +175,18 @@ function displayCities(matches, elements) {
     }).join('');
     
     document.getElementById('cities').innerHTML = citiesHtml;
+}
+
+function getSunshineText(sunshine) {
+    const sunIcons = ['☁️', '🌤️', '⛅', '🌞', '☀️'];
+    const texts = [
+        '极少光照（阴冷多雨）',
+        '较少光照（多云阴天）',
+        '中等光照（四季分明）',
+        '较多光照（阳光充足）',
+        '充足光照（艳阳高照）'
+    ];
+    return `${sunIcons[sunshine - 1]} ${texts[sunshine - 1]}`;
 }
 
 function generateMatchReason(city, elements) {

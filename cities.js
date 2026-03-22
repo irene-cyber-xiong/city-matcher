@@ -5,6 +5,7 @@ const cities = [
         nameEn: "Beijing",
         country: "中国",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "土", secondary: "水", tertiary: "金" },
         description: "政治文化中心，稳重厚重的北方气质",
         characteristics: { climate: "干燥，四季分明", pace: "稳定但压抑", culture: "传统、规则、等级", industry: "政府、金融、科技、文化" },
@@ -37,7 +38,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -60,6 +87,7 @@ const cities = [
         nameEn: "Shanghai",
         country: "中国",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "水", secondary: "金", tertiary: "木" },
         description: "东方巴黎，精致务实的商业都会",
         characteristics: { climate: "湿润，四季分明", pace: "快但有序", culture: "精致、务实、国际化", industry: "金融、贸易、时尚、科技" },
@@ -92,7 +120,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -115,6 +169,7 @@ const cities = [
         nameEn: "Shenzhen",
         country: "中国",
         continent: "asia",
+        sunshine: 4,
         elements: { primary: "木", secondary: "水", tertiary: "火" },
         description: "年轻的创业之城，快速生长的科技森林",
         characteristics: { climate: "亚热带，温暖湿润", pace: "快，年轻化", culture: "创新、务实、包容", industry: "科技、制造、金融、创业" },
@@ -147,7 +202,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -170,6 +251,7 @@ const cities = [
         nameEn: "Chengdu",
         country: "中国",
         continent: "asia",
+        sunshine: 2,
         elements: { primary: "水", secondary: "土", tertiary: "金" },
         description: "天府之国，慢节奏享乐主义的盆地文化",
         characteristics: { climate: "湿润多雾，少日照", pace: "慢，悠闲", culture: "包容、享乐、人情味", industry: "科技、文创、餐饮、旅游" },
@@ -202,7 +284,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -225,6 +333,7 @@ const cities = [
         nameEn: "Hangzhou",
         country: "中国",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "水", secondary: "木", tertiary: "土" },
         description: "人间天堂，温润雅致的江南水乡",
         characteristics: { climate: "温润，四季分明", pace: "适中，不急不慢", culture: "雅致、文艺、商业", industry: "互联网、电商、文创、旅游" },
@@ -257,7 +366,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -280,6 +415,7 @@ const cities = [
         nameEn: "San Francisco",
         country: "美国",
         continent: "north-america",
+        sunshine: 4,
         elements: { primary: "金", secondary: "水", tertiary: "木" },
         description: "科技与金融的完美结合，自由开放的湾区文化",
         characteristics: { climate: "温和湿润，海湾气候", pace: "快但不压抑", culture: "多元、创新、包容", industry: "科技、金融、创业" },
@@ -312,7 +448,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -335,6 +497,7 @@ const cities = [
         nameEn: "New York",
         country: "美国",
         continent: "north-america",
+        sunshine: 3,
         elements: { primary: "金", secondary: "水", tertiary: "火" },
         description: "全球金融中心，快节奏高压力的大都会",
         characteristics: { climate: "四季分明，冬冷夏热", pace: "极快，24小时不停歇", culture: "多元、竞争、精英", industry: "金融、媒体、艺术、时尚" },
@@ -367,7 +530,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -390,6 +579,7 @@ const cities = [
         nameEn: "Tokyo",
         country: "日本",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "金", secondary: "木", tertiary: "水" },
         description: "精致有序的超级都市，传统与现代的完美融合",
         characteristics: { climate: "温带，四季分明", pace: "快但有序", culture: "精致、礼貌、压抑", industry: "科技、金融、文化、制造" },
@@ -422,7 +612,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -445,6 +661,7 @@ const cities = [
         nameEn: "Singapore",
         country: "新加坡",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "金", secondary: "水", tertiary: "火" },
         description: "花园城市，规则清晰的国际金融中心",
         characteristics: { climate: "热带，全年炎热", pace: "快但有序", culture: "多元、规则、效率", industry: "金融、贸易、科技" },
@@ -477,7 +694,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -500,6 +743,7 @@ const cities = [
         nameEn: "London",
         country: "英国",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "水", secondary: "金", tertiary: "土" },
         description: "雾都金融城，传统与创新并存的国际都会",
         characteristics: { climate: "温带海洋性，多雨阴冷", pace: "快但优雅", culture: "传统、多元、绅士", industry: "金融、文化、创意、教育" },
@@ -532,7 +776,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -555,6 +825,7 @@ const cities = [
         nameEn: "Taipei",
         country: "中国台湾",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "水", secondary: "木", tertiary: "金" },
         description: "宝岛之都，温润包容的华人文化",
         characteristics: { climate: "亚热带，温暖湿润", pace: "适中，宜居", culture: "包容、文艺、人情味", industry: "科技、文创、服务业" },
@@ -587,7 +858,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -610,6 +907,7 @@ const cities = [
         nameEn: "Hong Kong",
         country: "中国",
         continent: "asia",
+        sunshine: 4,
         elements: { primary: "金", secondary: "水", tertiary: "火" },
         description: "东方之珠，快节奏的国际金融中心",
         characteristics: { climate: "亚热带，湿热", pace: "极快，高效", culture: "务实、拼搏、国际化", industry: "金融、贸易、物流、旅游" },
@@ -642,7 +940,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -665,6 +989,7 @@ const cities = [
         nameEn: "Guangzhou",
         country: "中国",
         continent: "asia",
+        sunshine: 4,
         elements: { primary: "水", secondary: "火", tertiary: "木" },
         description: "千年商都，务实包容的岭南文化",
         characteristics: { climate: "亚热带，湿热", pace: "快但务实", culture: "务实、包容、商业", industry: "贸易、制造、物流、科技" },
@@ -697,7 +1022,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -720,6 +1071,7 @@ const cities = [
         nameEn: "Chongqing",
         country: "中国",
         continent: "asia",
+        sunshine: 2,
         elements: { primary: "火", secondary: "水", tertiary: "金" },
         description: "山城火锅，热辣直爽的江湖气质",
         characteristics: { climate: "湿热，夏天闷热", pace: "快，有冲劲", culture: "直爽、火辣、江湖", industry: "制造业、物流、科技" },
@@ -752,7 +1104,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -775,6 +1153,7 @@ const cities = [
         nameEn: "Xi'an",
         country: "中国",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "土", secondary: "金", tertiary: "火" },
         description: "十三朝古都，厚重沉稳的西北文化",
         characteristics: { climate: "温带大陆性，干燥", pace: "慢，稳定", culture: "历史、传统、厚重", industry: "旅游、教育、航空、科技" },
@@ -807,7 +1186,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -830,6 +1235,7 @@ const cities = [
         nameEn: "Paris",
         country: "法国",
         continent: "europe",
+        sunshine: 3,
         elements: { primary: "火", secondary: "土", tertiary: "金" },
         description: "浪漫之都，艺术与时尚的世界中心",
         characteristics: { climate: "温带，四季分明", pace: "慢而优雅", culture: "浪漫、艺术、享乐", industry: "时尚、奢侈品、旅游、文化" },
@@ -862,7 +1268,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -885,6 +1317,7 @@ const cities = [
         nameEn: "Los Angeles",
         country: "美国",
         continent: "north-america",
+        sunshine: 5,
         elements: { primary: "火", secondary: "金", tertiary: "木" },
         description: "天使之城，阳光、海滩与娱乐产业的天堂",
         characteristics: { climate: "地中海气候，阳光充足", pace: "悠闲但竞争", culture: "多元、创意、娱乐", industry: "娱乐、科技、航空、时尚" },
@@ -917,7 +1350,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -940,6 +1399,7 @@ const cities = [
         nameEn: "Seattle",
         country: "美国",
         continent: "north-america",
+        sunshine: 2,
         elements: { primary: "水", secondary: "木", tertiary: "金" },
         description: "翡翠之城，科技与自然的完美平衡",
         characteristics: { climate: "温带海洋性，多雨", pace: "适中，宜居", culture: "环保、创新、文艺", industry: "科技、航空、咖啡、音乐" },
@@ -972,7 +1432,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -995,6 +1481,7 @@ const cities = [
         nameEn: "Vancouver",
         country: "加拿大",
         continent: "north-america",
+        sunshine: 2,
         elements: { primary: "水", secondary: "木", tertiary: "土" },
         description: "最宜居城市，山海之间的温润之地",
         characteristics: { climate: "温带海洋性，温和多雨", pace: "慢，宜居", culture: "多元、环保、悠闲", industry: "影视、科技、旅游、贸易" },
@@ -1027,7 +1514,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1050,6 +1563,7 @@ const cities = [
         nameEn: "Sydney",
         country: "澳大利亚",
         continent: "oceania",
+        sunshine: 5,
         elements: { primary: "水", secondary: "火", tertiary: "金" },
         description: "南半球明珠，阳光海滩与悠闲生活",
         characteristics: { climate: "亚热带，温暖宜人", pace: "慢，悠闲", culture: "休闲、户外、多元", industry: "金融、旅游、教育、矿业" },
@@ -1082,7 +1596,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1105,6 +1645,7 @@ const cities = [
         nameEn: "Brisbane",
         country: "澳大利亚",
         continent: "oceania",
+        sunshine: 5,
         elements: { primary: "火", secondary: "水", tertiary: "木" },
         description: "阳光之城，悠闲宜居的昆士兰首府",
         characteristics: { climate: "亚热带，阳光充足", pace: "慢，悠闲", culture: "休闲、户外、友好", industry: "教育、旅游、矿业、农业" },
@@ -1137,7 +1678,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1160,6 +1727,7 @@ const cities = [
         nameEn: "Melbourne",
         country: "澳大利亚",
         continent: "oceania",
+        sunshine: 4,
         elements: { primary: "木", secondary: "水", tertiary: "土" },
         description: "文化之都，咖啡与艺术的温润之城",
         characteristics: { climate: "温带海洋性，多变", pace: "慢，文艺", culture: "艺术、咖啡、体育", industry: "教育、文化、金融、科技" },
@@ -1192,7 +1760,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1215,6 +1809,7 @@ const cities = [
         nameEn: "Kuala Lumpur",
         country: "马来西亚",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "水", secondary: "木", tertiary: "火" },
         description: "花园城市，多元文化的东南亚枢纽",
         characteristics: { climate: "热带雨林，全年炎热", pace: "适中，悠闲", culture: "多元、包容、伊斯兰", industry: "金融、旅游、制造" },
@@ -1247,7 +1842,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1270,6 +1891,7 @@ const cities = [
         nameEn: "Bangkok",
         country: "泰国",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "火", secondary: "水", tertiary: "木" },
         description: "天使之城，热带的慢生活与佛系文化",
         characteristics: { climate: "热带，全年炎热", pace: "慢，悠闲", culture: "佛系、享乐、包容", industry: "旅游、服务、制造、科技" },
@@ -1302,7 +1924,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1325,6 +1973,7 @@ const cities = [
         nameEn: "Dubai",
         country: "阿联酋",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "金", secondary: "火", tertiary: "土" },
         description: "沙漠奇迹，奢华与商业的完美结合",
         characteristics: { climate: "沙漠气候，炎热干燥", pace: "快，国际化", culture: "奢华、商业、多元", industry: "金融、贸易、旅游、房地产" },
@@ -1357,7 +2006,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1380,6 +2055,7 @@ const cities = [
         nameEn: "Boston",
         country: "美国",
         continent: "north-america",
+        sunshine: 3,
         elements: { primary: "水", secondary: "金", tertiary: "木" },
         description: "教育之城，历史与创新的完美融合",
         characteristics: { climate: "温带大陆性，四季分明", pace: "快但有序", culture: "学术、历史、精英", industry: "教育、医疗、科技、金融" },
@@ -1412,7 +2088,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1435,6 +2137,7 @@ const cities = [
         nameEn: "Chicago",
         country: "美国",
         continent: "north-america",
+        sunshine: 3,
         elements: { primary: "金", secondary: "水", tertiary: "火" },
         description: "风城，美国中部的金融与文化中心",
         characteristics: { climate: "大陆性，冬冷夏热", pace: "快，务实", culture: "务实、多元、艺术", industry: "金融、制造、物流、科技" },
@@ -1467,7 +2170,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1490,6 +2219,7 @@ const cities = [
         nameEn: "Toronto",
         country: "加拿大",
         continent: "north-america",
+        sunshine: 3,
         elements: { primary: "金", secondary: "水", tertiary: "土" },
         description: "加拿大金融中心，多元文化的移民之都",
         characteristics: { climate: "大陆性，冬冷夏热", pace: "快但有序", culture: "多元、包容、务实", industry: "金融、科技、媒体、教育" },
@@ -1522,7 +2252,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1545,6 +2301,7 @@ const cities = [
         nameEn: "Berlin",
         country: "德国",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "木", secondary: "水", tertiary: "金" },
         description: "自由之城，创意与反叛的欧洲文化中心",
         characteristics: { climate: "温带大陆性，冬冷夏温", pace: "适中，自由", culture: "自由、创意、多元", industry: "科技、创意、文化、制造" },
@@ -1577,7 +2334,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1600,6 +2383,7 @@ const cities = [
         nameEn: "Amsterdam",
         country: "荷兰",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "水", secondary: "木", tertiary: "金" },
         description: "运河之城，自由包容的北欧文化",
         characteristics: { climate: "温带海洋性，多雨", pace: "慢，悠闲", culture: "自由、包容、环保", industry: "金融、科技、创意、贸易" },
@@ -1632,7 +2416,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1655,6 +2465,7 @@ const cities = [
         nameEn: "Zurich",
         country: "瑞士",
         continent: "europe",
+        sunshine: 3,
         elements: { primary: "金", secondary: "土", tertiary: "水" },
         description: "金融之都，精确稳定的阿尔卑斯明珠",
         characteristics: { climate: "温带，四季分明", pace: "适中，精确", culture: "精确、稳定、高效", industry: "金融、制药、科技、钟表" },
@@ -1687,7 +2498,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1710,6 +2547,7 @@ const cities = [
         nameEn: "Rome",
         country: "意大利",
         continent: "europe",
+        sunshine: 4,
         elements: { primary: "土", secondary: "火", tertiary: "金" },
         description: "永恒之城，历史与艺术的宝库",
         characteristics: { climate: "地中海，温和宜人", pace: "慢，悠闲", culture: "历史、艺术、享乐", industry: "旅游、文化、时尚" },
@@ -1742,7 +2580,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1765,6 +2629,7 @@ const cities = [
         nameEn: "Madrid",
         country: "西班牙",
         continent: "europe",
+        sunshine: 5,
         elements: { primary: "火", secondary: "土", tertiary: "金" },
         description: "热情之都，艺术与足球的激情之城",
         characteristics: { climate: "地中海，干燥炎热", pace: "慢，享乐", culture: "热情、艺术、夜生活", industry: "旅游、文化、金融" },
@@ -1797,7 +2662,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1820,6 +2711,7 @@ const cities = [
         nameEn: "Stockholm",
         country: "瑞典",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "水", secondary: "木", tertiary: "金" },
         description: "北欧威尼斯，创新与福利的典范",
         characteristics: { climate: "温带大陆性，冬长夏短", pace: "适中，平衡", culture: "平等、创新、环保", industry: "科技、设计、金融" },
@@ -1852,7 +2744,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1875,6 +2793,7 @@ const cities = [
         nameEn: "Auckland",
         country: "新西兰",
         continent: "oceania",
+        sunshine: 4,
         elements: { primary: "水", secondary: "木", tertiary: "土" },
         description: "帆船之都，纯净自然的南太平洋明珠",
         characteristics: { climate: "温带海洋性，温和湿润", pace: "慢，宜居", culture: "悠闲、环保、多元", industry: "旅游、农业、教育" },
@@ -1907,7 +2826,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1930,6 +2875,7 @@ const cities = [
         nameEn: "Jakarta",
         country: "印度尼西亚",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "水", secondary: "火", tertiary: "木" },
         description: "千岛之国首都，活力四射的东南亚巨城",
         characteristics: { climate: "热带，全年炎热多雨", pace: "快但混乱", culture: "多元、伊斯兰、热情", industry: "制造、服务、金融" },
@@ -1962,7 +2908,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -1985,6 +2957,7 @@ const cities = [
         nameEn: "Ho Chi Minh City",
         country: "越南",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "水", secondary: "木", tertiary: "火" },
         description: "西贡往事，充满活力的新兴市场",
         characteristics: { climate: "热带，炎热多雨", pace: "快，充满活力", culture: "务实、勤奋、开放", industry: "制造、科技、服务" },
@@ -2017,7 +2990,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2040,6 +3039,7 @@ const cities = [
         nameEn: "Nanjing",
         country: "中国",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "土", secondary: "水", tertiary: "木" },
         description: "六朝古都，厚重温润的江南文化",
         characteristics: { climate: "亚热带，四季分明", pace: "适中，稳定", culture: "历史、文化、教育", industry: "教育、科技、制造、文化" },
@@ -2072,7 +3072,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2095,6 +3121,7 @@ const cities = [
         nameEn: "Wuhan",
         country: "中国",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "水", secondary: "火", tertiary: "土" },
         description: "九省通衢，江湖气与火辣并存",
         characteristics: { climate: "亚热带，夏热冬冷", pace: "快，有冲劲", culture: "直爽、江湖、务实", industry: "教育、科技、制造、物流" },
@@ -2127,7 +3154,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2150,6 +3203,7 @@ const cities = [
         nameEn: "Seoul",
         country: "韩国",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "火", secondary: "金", tertiary: "木" },
         description: "韩流之都，快节奏的东亚时尚中心",
         characteristics: { climate: "温带，四季分明", pace: "极快，竞争激烈", culture: "时尚、竞争、集体", industry: "科技、娱乐、时尚、制造" },
@@ -2182,7 +3236,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2205,6 +3285,7 @@ const cities = [
         nameEn: "Miami",
         country: "美国",
         continent: "north-america",
+        sunshine: 5,
         elements: { primary: "火", secondary: "水", tertiary: "木" },
         description: "阳光之城，拉丁风情的度假天堂",
         characteristics: { climate: "热带，全年温暖", pace: "悠闲，享乐", culture: "拉丁、海滩、派对", industry: "旅游、金融、贸易、房地产" },
@@ -2237,7 +3318,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2260,6 +3367,7 @@ const cities = [
         nameEn: "Austin",
         country: "美国",
         continent: "north-america",
+        sunshine: 5,
         elements: { primary: "木", secondary: "火", tertiary: "水" },
         description: "音乐之都，德州的创新绿洲",
         characteristics: { climate: "亚热带，炎热", pace: "快但轻松", culture: "音乐、创意、自由", industry: "科技、音乐、创业、教育" },
@@ -2292,7 +3400,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2315,6 +3449,7 @@ const cities = [
         nameEn: "Mexico City",
         country: "墨西哥",
         continent: "south-america",
+        sunshine: 5,
         elements: { primary: "火", secondary: "土", tertiary: "木" },
         description: "拉美巨城，古老与现代交织的文化熔炉",
         characteristics: { climate: "高原气候，四季如春", pace: "快但混乱", culture: "热情、历史、艺术", industry: "制造、金融、文化、旅游" },
@@ -2347,7 +3482,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2370,6 +3531,7 @@ const cities = [
         nameEn: "São Paulo",
         country: "巴西",
         continent: "south-america",
+        sunshine: 4,
         elements: { primary: "火", secondary: "木", tertiary: "水" },
         description: "南美经济引擎，充满活力的巨型都市",
         characteristics: { climate: "亚热带，温暖湿润", pace: "极快，混乱", culture: "多元、热情、拼搏", industry: "金融、制造、文化、科技" },
@@ -2402,7 +3564,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2425,6 +3613,7 @@ const cities = [
         nameEn: "Cape Town",
         country: "南非",
         continent: "africa",
+        sunshine: 5,
         elements: { primary: "水", secondary: "木", tertiary: "火" },
         description: "非洲明珠，山海之间的彩虹之城",
         characteristics: { climate: "地中海气候，温和宜人", pace: "慢，悠闲", culture: "多元、自然、艺术", industry: "旅游、农业、创意、科技" },
@@ -2457,7 +3646,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2480,6 +3695,7 @@ const cities = [
         nameEn: "Mumbai",
         country: "印度",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "火", secondary: "水", tertiary: "土" },
         description: "宝莱坞之都，印度的金融与娱乐中心",
         characteristics: { climate: "热带季风，炎热多雨", pace: "极快，混乱", culture: "多元、拼搏、宝莱坞", industry: "金融、娱乐、制造、科技" },
@@ -2512,7 +3728,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2535,6 +3777,7 @@ const cities = [
         nameEn: "Bangalore",
         country: "印度",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "木", secondary: "水", tertiary: "火" },
         description: "印度硅谷，科技创新的新兴中心",
         characteristics: { climate: "热带高原，温和宜人", pace: "快，充满活力", culture: "科技、创新、国际化", industry: "科技、IT、创业、教育" },
@@ -2567,7 +3810,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2590,6 +3859,7 @@ const cities = [
         nameEn: "Tel Aviv",
         country: "以色列",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "火", secondary: "金", tertiary: "水" },
         description: "创业之国，地中海畔的科技绿洲",
         characteristics: { climate: "地中海气候，温暖干燥", pace: "快，充满活力", culture: "创新、自由、多元", industry: "科技、创业、金融、国防" },
@@ -2622,7 +3892,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2645,6 +3941,7 @@ const cities = [
         nameEn: "Istanbul",
         country: "土耳其",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "水", secondary: "火", tertiary: "土" },
         description: "横跨欧亚，千年古城的现代复兴",
         characteristics: { climate: "地中海气候，温和", pace: "适中，混乱", culture: "东西交融、历史、商业", industry: "旅游、贸易、制造、金融" },
@@ -2677,7 +3974,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2700,6 +4023,7 @@ const cities = [
         nameEn: "Lisbon",
         country: "葡萄牙",
         continent: "europe",
+        sunshine: 5,
         elements: { primary: "水", secondary: "火", tertiary: "木" },
         description: "大西洋明珠，温暖悠闲的欧洲后花园",
         characteristics: { climate: "地中海气候，温暖宜人", pace: "慢，悠闲", culture: "历史、艺术、享乐", industry: "旅游、科技、文化、创业" },
@@ -2732,7 +4056,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2755,6 +4105,7 @@ const cities = [
         nameEn: "Copenhagen",
         country: "丹麦",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "水", secondary: "木", tertiary: "金" },
         description: "童话王国，幸福指数最高的北欧之城",
         characteristics: { climate: "温带海洋性，温和多雨", pace: "慢，平衡", culture: "环保、设计、平等", industry: "设计、科技、制药、航运" },
@@ -2787,7 +4138,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2810,6 +4187,7 @@ const cities = [
         nameEn: "Vienna",
         country: "奥地利",
         continent: "europe",
+        sunshine: 3,
         elements: { primary: "土", secondary: "金", tertiary: "水" },
         description: "音乐之都，优雅古典的欧洲心脏",
         characteristics: { climate: "温带大陆性，四季分明", pace: "慢，优雅", culture: "古典、艺术、咖啡", industry: "旅游、文化、金融、国际组织" },
@@ -2842,7 +4220,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2865,6 +4269,7 @@ const cities = [
         nameEn: "Prague",
         country: "捷克",
         continent: "europe",
+        sunshine: 3,
         elements: { primary: "土", secondary: "水", tertiary: "木" },
         description: "百塔之城，中欧的建筑瑰宝",
         characteristics: { climate: "温带大陆性，四季分明", pace: "慢，悠闲", culture: "历史、艺术、啤酒", industry: "旅游、文化、科技、制造" },
@@ -2897,7 +4302,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2920,6 +4351,7 @@ const cities = [
         nameEn: "Warsaw",
         country: "波兰",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "木", secondary: "土", tertiary: "金" },
         description: "凤凰之城，从废墟中重生的东欧新星",
         characteristics: { climate: "温带大陆性，冬冷夏热", pace: "快，发展中", culture: "历史、坚韧、创业", industry: "科技、金融、制造、创业" },
@@ -2952,7 +4384,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -2975,6 +4433,7 @@ const cities = [
         nameEn: "Helsinki",
         country: "芬兰",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "水", secondary: "木", tertiary: "金" },
         description: "波罗的海女儿，设计与科技的北欧明珠",
         characteristics: { climate: "温带大陆性，冬长夏短", pace: "慢，平衡", culture: "设计、科技、桑拿", industry: "科技、设计、游戏、教育" },
@@ -3007,7 +4466,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3030,6 +4515,7 @@ const cities = [
         nameEn: "Edinburgh",
         country: "英国",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "水", secondary: "土", tertiary: "金" },
         description: "苏格兰之心，古堡与威士忌的浪漫之城",
         characteristics: { climate: "温带海洋性，多雨阴冷", pace: "慢，优雅", culture: "历史、文学、威士忌", industry: "金融、教育、旅游、文化" },
@@ -3062,7 +4548,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3085,6 +4597,7 @@ const cities = [
         nameEn: "Dublin",
         country: "爱尔兰",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "水", secondary: "木", tertiary: "金" },
         description: "翡翠岛之都，科技与文学的绿色之城",
         characteristics: { climate: "温带海洋性，多雨温和", pace: "适中，友好", culture: "文学、音乐、酒吧", industry: "科技、金融、制药、教育" },
@@ -3117,7 +4630,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3140,6 +4679,7 @@ const cities = [
         nameEn: "Barcelona",
         country: "西班牙",
         continent: "europe",
+        sunshine: 5,
         elements: { primary: "火", secondary: "水", tertiary: "木" },
         description: "高迪之城，地中海畔的艺术天堂",
         characteristics: { climate: "地中海气候，温暖宜人", pace: "慢，享乐", culture: "艺术、建筑、海滩", industry: "旅游、设计、科技、文化" },
@@ -3172,7 +4712,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3195,6 +4761,7 @@ const cities = [
         nameEn: "Milan",
         country: "意大利",
         continent: "europe",
+        sunshine: 3,
         elements: { primary: "金", secondary: "火", tertiary: "土" },
         description: "时尚之都，意大利的商业与设计中心",
         characteristics: { climate: "温带大陆性，四季分明", pace: "快，务实", culture: "时尚、设计、商业", industry: "时尚、设计、金融、制造" },
@@ -3227,7 +4794,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3250,6 +4843,7 @@ const cities = [
         nameEn: "Busan",
         country: "韩国",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "水", secondary: "火", tertiary: "金" },
         description: "海云台之城，韩国的海滨度假胜地",
         characteristics: { climate: "温带季风，四季分明", pace: "适中，悠闲", culture: "海滨、电影、海鲜", industry: "港口、旅游、制造、影视" },
@@ -3282,7 +4876,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3305,6 +4925,7 @@ const cities = [
         nameEn: "Montreal",
         country: "加拿大",
         continent: "north-america",
+        sunshine: 3,
         elements: { primary: "水", secondary: "木", tertiary: "火" },
         description: "北美小巴黎，双语文化的艺术之城",
         characteristics: { climate: "大陆性，冬冷夏热", pace: "适中，文艺", culture: "双语、艺术、节庆", industry: "航空、科技、文化、游戏" },
@@ -3337,7 +4958,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3360,6 +5007,7 @@ const cities = [
         nameEn: "Osaka",
         country: "日本",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "水", secondary: "火", tertiary: "木" },
         description: "天下厨房，热情直爽的关西文化",
         characteristics: { climate: "温带，四季分明", pace: "快但轻松", culture: "美食、幽默、商业", industry: "制造、贸易、旅游、美食" },
@@ -3392,7 +5040,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3415,6 +5089,7 @@ const cities = [
         nameEn: "Kyoto",
         country: "日本",
         continent: "asia",
+        sunshine: 3,
         elements: { primary: "土", secondary: "木", tertiary: "水" },
         description: "千年古都，传统与禅意的完美保存",
         characteristics: { climate: "温带，四季分明", pace: "慢，优雅", culture: "传统、禅宗、艺术", industry: "旅游、文化、教育、传统工艺" },
@@ -3447,7 +5122,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3470,6 +5171,7 @@ const cities = [
         nameEn: "Chiang Mai",
         country: "泰国",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "木", secondary: "水", tertiary: "土" },
         description: "泰北玫瑰，数字游民的天堂",
         characteristics: { climate: "热带季风，温暖", pace: "极慢，悠闲", culture: "佛系、手工艺、慢生活", industry: "旅游、手工艺、数字游民、教育" },
@@ -3502,7 +5204,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3525,6 +5253,7 @@ const cities = [
         nameEn: "Bali",
         country: "印度尼西亚",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "水", secondary: "木", tertiary: "火" },
         description: "众神之岛，灵性与度假的热带天堂",
         characteristics: { climate: "热带，全年温暖", pace: "极慢，度假", culture: "灵性、冲浪、瑜伽", industry: "旅游、度假、数字游民、艺术" },
@@ -3557,7 +5286,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3580,6 +5335,7 @@ const cities = [
         nameEn: "Oslo",
         country: "挪威",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "水", secondary: "木", tertiary: "金" },
         description: "峡湾之都，自然与现代的北欧典范",
         characteristics: { climate: "温带海洋性，冬长夏短", pace: "慢，平衡", culture: "环保、户外、平等", industry: "能源、航运、科技、金融" },
@@ -3612,7 +5368,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3635,6 +5417,7 @@ const cities = [
         nameEn: "Reykjavik",
         country: "冰岛",
         continent: "europe",
+        sunshine: 1,
         elements: { primary: "水", secondary: "火", tertiary: "金" },
         description: "冰与火之歌，世界尽头的极光之城",
         characteristics: { climate: "亚寒带海洋性，寒冷多风", pace: "极慢，宁静", culture: "自然、音乐、独立", industry: "旅游、渔业、能源、科技" },
@@ -3667,7 +5450,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3690,6 +5499,7 @@ const cities = [
         nameEn: "Buenos Aires",
         country: "阿根廷",
         continent: "south-america",
+        sunshine: 4,
         elements: { primary: "火", secondary: "水", tertiary: "土" },
         description: "南美巴黎，探戈与牛排的激情之城",
         characteristics: { climate: "温带，四季分明", pace: "慢，享乐", culture: "探戈、足球、文学", industry: "农业、文化、旅游、金融" },
@@ -3722,7 +5532,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3745,6 +5581,7 @@ const cities = [
         nameEn: "Santiago",
         country: "智利",
         continent: "south-america",
+        sunshine: 5,
         elements: { primary: "土", secondary: "金", tertiary: "火" },
         description: "安第斯山下，南美最稳定的现代都市",
         characteristics: { climate: "地中海气候，温和干燥", pace: "适中，稳定", culture: "稳定、务实、葡萄酒", industry: "矿业、金融、葡萄酒、科技" },
@@ -3777,7 +5614,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3800,6 +5663,7 @@ const cities = [
         nameEn: "Lima",
         country: "秘鲁",
         continent: "south-america",
+        sunshine: 3,
         elements: { primary: "土", secondary: "水", tertiary: "火" },
         description: "美食之都，印加文明的现代传承",
         characteristics: { climate: "沙漠气候，干燥多雾", pace: "适中，混乱", culture: "历史、美食、多元", industry: "矿业、旅游、美食、制造" },
@@ -3832,7 +5696,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3855,6 +5745,7 @@ const cities = [
         nameEn: "Nairobi",
         country: "肯尼亚",
         continent: "africa",
+        sunshine: 5,
         elements: { primary: "木", secondary: "火", tertiary: "土" },
         description: "东非之星，野生动物与科技创新的交汇",
         characteristics: { climate: "热带高原，温和宜人", pace: "快，充满活力", culture: "多元、创业、自然", industry: "科技、旅游、农业、金融" },
@@ -3887,7 +5778,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3910,6 +5827,7 @@ const cities = [
         nameEn: "Casablanca",
         country: "摩洛哥",
         continent: "africa",
+        sunshine: 5,
         elements: { primary: "水", secondary: "土", tertiary: "金" },
         description: "白色之城，北非的商业与文化门户",
         characteristics: { climate: "地中海气候，温和", pace: "适中，商业", culture: "阿拉伯、法式、商业", industry: "贸易、金融、制造、旅游" },
@@ -3942,7 +5860,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -3965,6 +5909,7 @@ const cities = [
         nameEn: "Lagos",
         country: "尼日利亚",
         continent: "africa",
+        sunshine: 5,
         elements: { primary: "火", secondary: "水", tertiary: "木" },
         description: "非洲巨城，充满活力的西非经济中心",
         characteristics: { climate: "热带，炎热多雨", pace: "极快，混乱", culture: "活力、音乐、创业", industry: "金融、科技、娱乐、贸易" },
@@ -3997,7 +5942,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4020,6 +5991,7 @@ const cities = [
         nameEn: "Hanoi",
         country: "越南",
         continent: "asia",
+        sunshine: 4,
         elements: { primary: "水", secondary: "土", tertiary: "木" },
         description: "千年古都，传统与现代交织的越南心脏",
         characteristics: { climate: "亚热带季风，四季分明", pace: "适中，传统", culture: "历史、传统、咖啡", industry: "制造、科技、旅游、教育" },
@@ -4052,7 +6024,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4075,6 +6073,7 @@ const cities = [
         nameEn: "Manila",
         country: "菲律宾",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "火", secondary: "水", tertiary: "木" },
         description: "东方明珠，热情活力的群岛之都",
         characteristics: { climate: "热带季风，炎热多雨", pace: "快但混乱", culture: "热情、天主教、家庭", industry: "服务、BPO、制造、旅游" },
@@ -4107,7 +6106,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4130,6 +6155,7 @@ const cities = [
         nameEn: "Colombo",
         country: "斯里兰卡",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "水", secondary: "木", tertiary: "火" },
         description: "印度洋明珠，茶香与佛教的热带岛国",
         characteristics: { climate: "热带季风，全年温暖", pace: "慢，悠闲", culture: "佛教、茶文化、多元", industry: "旅游、茶叶、纺织、港口" },
@@ -4162,7 +6188,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4185,6 +6237,7 @@ const cities = [
         nameEn: "Dhaka",
         country: "孟加拉国",
         continent: "asia",
+        sunshine: 4,
         elements: { primary: "水", secondary: "木", tertiary: "土" },
         description: "恒河三角洲之城，人口密集的新兴市场",
         characteristics: { climate: "热带季风，炎热多雨", pace: "快，拥挤", culture: "传统、纺织、人口密集", industry: "纺织、制造、服务、科技" },
@@ -4217,7 +6270,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4240,6 +6319,7 @@ const cities = [
         nameEn: "Delhi",
         country: "印度",
         continent: "asia",
+        sunshine: 4,
         elements: { primary: "土", secondary: "火", tertiary: "金" },
         description: "印度首都，古老与现代的激烈碰撞",
         characteristics: { climate: "亚热带季风，极端天气", pace: "快，混乱", culture: "历史、政治、多元", industry: "政府、科技、制造、旅游" },
@@ -4272,7 +6352,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4295,6 +6401,7 @@ const cities = [
         nameEn: "Kathmandu",
         country: "尼泊尔",
         continent: "asia",
+        sunshine: 4,
         elements: { primary: "土", secondary: "木", tertiary: "水" },
         description: "喜马拉雅山下，灵性与冒险的圣地",
         characteristics: { climate: "高原气候，温和", pace: "极慢，宁静", culture: "佛教、登山、灵性", industry: "旅游、登山、手工艺、农业" },
@@ -4327,7 +6434,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4350,6 +6483,7 @@ const cities = [
         nameEn: "Lhasa",
         country: "中国",
         continent: "africa",
+        sunshine: 5,
         elements: { primary: "土", secondary: "金", tertiary: "水" },
         description: "日光之城，世界屋脊的灵性圣地",
         characteristics: { climate: "高原气候，干燥寒冷", pace: "极慢，宁静", culture: "藏传佛教、朝圣、传统", industry: "旅游、宗教、农牧业" },
@@ -4382,7 +6516,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4406,6 +6566,7 @@ const cities = [
         nameEn: "Athens",
         country: "希腊",
         continent: "europe",
+        sunshine: 5,
         elements: { primary: "土", secondary: "火", tertiary: "水" },
         description: "西方文明摇篮，古典与现代的碰撞",
         characteristics: { climate: "地中海气候，温暖干燥", pace: "慢，悠闲", culture: "古典、哲学、享乐", industry: "旅游、航运、文化、教育" },
@@ -4438,7 +6599,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4461,6 +6648,7 @@ const cities = [
         nameEn: "Budapest",
         country: "匈牙利",
         continent: "europe",
+        sunshine: 3,
         elements: { primary: "水", secondary: "土", tertiary: "金" },
         description: "多瑙河明珠，东欧的温泉之都",
         characteristics: { climate: "温带大陆性，四季分明", pace: "适中，悠闲", culture: "温泉、建筑、音乐", industry: "旅游、科技、制造、金融" },
@@ -4493,7 +6681,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4516,6 +6730,7 @@ const cities = [
         nameEn: "Bucharest",
         country: "罗马尼亚",
         continent: "europe",
+        sunshine: 3,
         elements: { primary: "木", secondary: "土", tertiary: "水" },
         description: "小巴黎，快速发展的东欧科技中心",
         characteristics: { climate: "温带大陆性，四季分明", pace: "快，发展中", culture: "拉丁、东正教、创业", industry: "科技、制造、金融、旅游" },
@@ -4548,7 +6763,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4571,6 +6812,7 @@ const cities = [
         nameEn: "Tallinn",
         country: "爱沙尼亚",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "金", secondary: "水", tertiary: "木" },
         description: "数字之国，波罗的海的科技明珠",
         characteristics: { climate: "温带大陆性，冬长夏短", pace: "适中，高效", culture: "数字、中世纪、创新", industry: "科技、数字、旅游、金融" },
@@ -4603,7 +6845,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4626,6 +6894,7 @@ const cities = [
         nameEn: "Riga",
         country: "拉脱维亚",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "水", secondary: "木", tertiary: "金" },
         description: "新艺术之都，波罗的海的建筑瑰宝",
         characteristics: { climate: "温带海洋性，冬长夏短", pace: "慢，宁静", culture: "新艺术、建筑、音乐", industry: "旅游、物流、科技、制造" },
@@ -4658,7 +6927,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4681,6 +6976,7 @@ const cities = [
         nameEn: "Kyiv",
         country: "乌克兰",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "木", secondary: "水", tertiary: "土" },
         description: "第聂伯河畔，东欧的文化古都",
         characteristics: { climate: "温带大陆性，冬冷夏热", pace: "适中，发展中", culture: "东正教、历史、艺术", industry: "科技、农业、制造、旅游" },
@@ -4713,7 +7009,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4736,6 +7058,7 @@ const cities = [
         nameEn: "Tbilisi",
         country: "格鲁吉亚",
         continent: "europe",
+        sunshine: 4,
         elements: { primary: "火", secondary: "土", tertiary: "水" },
         description: "高加索明珠，葡萄酒的古老故乡",
         characteristics: { climate: "亚热带，温和", pace: "慢，悠闲", culture: "葡萄酒、东正教、热情", industry: "旅游、葡萄酒、农业、科技" },
@@ -4768,7 +7091,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4791,6 +7140,7 @@ const cities = [
         nameEn: "Jerusalem",
         country: "以色列",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "土", secondary: "金", tertiary: "火" },
         description: "圣城，三大宗教的精神中心",
         characteristics: { climate: "地中海气候，温和干燥", pace: "慢，庄重", culture: "宗教、历史、神圣", industry: "旅游、宗教、教育、科技" },
@@ -4823,7 +7173,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4846,6 +7222,7 @@ const cities = [
         nameEn: "Amman",
         country: "约旦",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "土", secondary: "金", tertiary: "火" },
         description: "七山之城，中东的稳定绿洲",
         characteristics: { climate: "地中海气候，干燥", pace: "适中，稳定", culture: "阿拉伯、历史、包容", industry: "旅游、服务、金融、贸易" },
@@ -4878,7 +7255,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4901,6 +7304,7 @@ const cities = [
         nameEn: "Beirut",
         country: "黎巴嫩",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "水", secondary: "火", tertiary: "木" },
         description: "中东巴黎，地中海的文化熔炉",
         characteristics: { climate: "地中海气候，温和", pace: "快，混乱", culture: "多元、艺术、夜生活", industry: "金融、旅游、文化、贸易" },
@@ -4933,7 +7337,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -4956,6 +7386,7 @@ const cities = [
         nameEn: "Doha",
         country: "卡塔尔",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "金", secondary: "火", tertiary: "土" },
         description: "海湾明珠，现代化的沙漠奇迹",
         characteristics: { climate: "沙漠气候，极热", pace: "快，现代化", culture: "伊斯兰、现代、奢华", industry: "能源、金融、航空、体育" },
@@ -4988,7 +7419,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -5011,6 +7468,7 @@ const cities = [
         nameEn: "Abu Dhabi",
         country: "阿联酋",
         continent: "asia",
+        sunshine: 5,
         elements: { primary: "金", secondary: "土", tertiary: "火" },
         description: "沙漠之都，阿联酋的政治与文化中心",
         characteristics: { climate: "沙漠气候，炎热干燥", pace: "适中，稳定", culture: "伊斯兰、传统、奢华", industry: "能源、金融、文化、旅游" },
@@ -5043,7 +7501,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -5066,6 +7550,7 @@ const cities = [
         nameEn: "Tehran",
         country: "伊朗",
         continent: "asia",
+        sunshine: 4,
         elements: { primary: "土", secondary: "火", tertiary: "金" },
         description: "波斯古都，厚重历史的现代都市",
         characteristics: { climate: "半干旱，四季分明", pace: "快，混乱", culture: "波斯、伊斯兰、历史", industry: "能源、制造、教育、文化" },
@@ -5098,7 +7583,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -5122,6 +7633,7 @@ const cities = [
         nameEn: "Moscow",
         country: "俄罗斯",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "金", secondary: "土", tertiary: "水" },
         description: "红场之都，俄罗斯的政治与文化心脏",
         characteristics: { climate: "温带大陆性，冬长夏短", pace: "快，稳定", culture: "东正教、历史、艺术", industry: "能源、金融、科技、文化" },
@@ -5154,7 +7666,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -5178,6 +7716,7 @@ const cities = [
         nameEn: "Saint Petersburg",
         country: "俄罗斯",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "水", secondary: "金", tertiary: "木" },
         description: "北方威尼斯，俄罗斯的文化之都",
         characteristics: { climate: "温带大陆性，冬长夏短", pace: "适中，优雅", culture: "艺术、芭蕾、文学", industry: "文化、旅游、科技、港口" },
@@ -5210,7 +7749,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -5233,6 +7798,7 @@ const cities = [
         nameEn: "Munich",
         country: "德国",
         continent: "europe",
+        sunshine: 3,
         elements: { primary: "土", secondary: "金", tertiary: "水" },
         description: "啤酒之都，巴伐利亚的富裕之城",
         characteristics: { climate: "温带大陆性，四季分明", pace: "适中，稳定", culture: "啤酒、传统、富裕", industry: "汽车、科技、金融、旅游" },
@@ -5265,7 +7831,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -5288,6 +7880,7 @@ const cities = [
         nameEn: "Frankfurt",
         country: "德国",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "金", secondary: "土", tertiary: "水" },
         description: "欧洲金融中心，摩天大楼之城",
         characteristics: { climate: "温带海洋性，四季分明", pace: "快，商业", culture: "金融、国际化、务实", industry: "金融、航空、会展、科技" },
@@ -5320,7 +7913,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -5343,6 +7962,7 @@ const cities = [
         nameEn: "Manchester",
         country: "英国",
         continent: "europe",
+        sunshine: 2,
         elements: { primary: "水", secondary: "木", tertiary: "火" },
         description: "工业革命发源地，足球与音乐之城",
         characteristics: { climate: "温带海洋性，多雨", pace: "适中，活力", culture: "足球、音乐、工业", industry: "科技、教育、媒体、体育" },
@@ -5375,7 +7995,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -5398,6 +8044,7 @@ const cities = [
         nameEn: "Rio de Janeiro",
         country: "巴西",
         continent: "south-america",
+        sunshine: 5,
         elements: { primary: "火", secondary: "水", tertiary: "木" },
         description: "狂欢之城，海滩与桑巴的热情之都",
         characteristics: { climate: "热带，全年温暖", pace: "慢，享乐", culture: "狂欢节、桑巴、海滩", industry: "旅游、石油、文化、体育" },
@@ -5430,7 +8077,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
@@ -5453,6 +8126,7 @@ const cities = [
         nameEn: "Bogotá",
         country: "哥伦比亚",
         continent: "south-america",
+        sunshine: 4,
         elements: { primary: "土", secondary: "木", tertiary: "水" },
         description: "安第斯高原之城，拉美的文化中心",
         characteristics: { climate: "高原气候，四季如春", pace: "适中，发展中", culture: "咖啡、文学、艺术", industry: "咖啡、科技、金融、旅游" },
@@ -5485,7 +8159,33 @@ const cities = [
                 }
             }
             
-            // 3. 五行相克：避免kezhiRelation（减分）
+            // 3. 光照影响五行（新增！）
+            // 光照 = 火的能量，阴雨 = 水的能量
+            if (this.sunshine >= 4) {
+                // 光照充足的城市，火属性增强
+                if (this.elements.primary === "火") {
+                    score += 5;  // 主属性是火，额外加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("火")) {
+                    score += 8;  // 你缺火，阳光城市大加分
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("水")) {
+                    score -= 3;  // 你水旺，太阳太强可能不适应
+                }
+            } else if (this.sunshine <= 2) {
+                // 光照少的城市，水/阴属性增强
+                if (this.elements.primary === "水") {
+                    score += 3;  // 主属性是水，小加分
+                }
+                if (bazi.weakElements && bazi.weakElements.includes("水")) {
+                    score += 5;  // 你缺水，阴雨城市有帮助
+                }
+                if (bazi.strongElements && bazi.strongElements.includes("火")) {
+                    score -= 5;  // 你火旺，阴冷城市会压抑
+                }
+            }
+            
+            // 4. 五行相克：避免克制关系（减分）
             // 木克土、土克水、水克火、火克金、金克木
             const kezhiRelation = {
                 "木": "土", "土": "水", "水": "火", "火": "金", "金": "木"
