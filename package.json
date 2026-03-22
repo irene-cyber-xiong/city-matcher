@@ -1,16 +1,8 @@
 {
   "name": "city-matcher",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "City Matcher - Find your perfect city based on BaZi",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bazi-calculator-by-alvamind": "^1.0.2",
-    "lunar-javascript": "^1.7.7"
+    "build": "echo 'No build step required - static site'"
   }
 }
